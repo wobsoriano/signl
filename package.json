@@ -1,16 +1,16 @@
 {
-  "name": "pkg-name",
+  "name": "signl",
   "version": "0.0.0",
   "packageManager": "pnpm@9.4.0",
   "description": "",
-  "author": "Your Name <youremail@mail.com>",
+  "author": "Robert Soriano <sorianorobertc@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/username/pkg-name#readme",
+  "homepage": "https://github.com/wobsoriano/signl#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/username/pkg-name.git"
+    "url": "git+https://github.com/wobsoriano/signl.git"
   },
-  "bugs": "https://github.com/username/pkg-name/issues",
+  "bugs": "https://github.com/wobsoriano/signl/issues",
   "keywords": [],
   "sideEffects": false,
   "exports": {
@@ -43,5 +43,8 @@
     "tsup": "8.0.1",
     "typescript": "^5.5.2",
     "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "@vue/reactivity": "^3.4.31"
   }
 }
