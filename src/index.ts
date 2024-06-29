@@ -1,38 +1,41 @@
 import { ref, computed, effect, type Ref, UnwrapRef, ComputedRef } from '@vue/reactivity'
 
-class State<T> {
-  #state: Ref<UnwrapRef<T>>
-
-  constructor(initialValue: T) {
-    this.#state = ref(initialValue)
-  }
-
-  get() {
-    return this.#state.value
-  }
-
-  set(updatedValue: T) {
-    this.#state.value = updatedValue as any
-  }
+interface Signal<T> {
+  get(): T
+  set?(value: T): void
 }
 
-class Computed<T = unknown> {
-  #computed: ComputedRef<T>
+namespace Signal {
+  export class State<T> implements Signal<UnwrapRef<T>> {
+    #state: Ref<UnwrapRef<T>>
 
-  constructor(fn: () => T) {
-    this.#computed = computed(fn)
+    constructor(initialValue: T) {
+      this.#state = ref(initialValue)
+    }
+
+    get(): UnwrapRef<T> {
+      return this.#state.value
+    }
+
+    set(updatedValue: UnwrapRef<T>): void {
+      this.#state.value = updatedValue
+    }
   }
 
-  get() {
-    return this.#computed.value
-  }
-}
+  export class Computed<T = unknown> implements Signal<T> {
+    #computed: ComputedRef<T>
 
-export const Signal = {
-  State,
-  Computed,
+    constructor(fn: () => T) {
+      this.#computed = computed(fn)
+    }
+
+    get(): T {
+      return this.#computed.value
+    }
+  }
 }
 
 export {
+  Signal,
   effect
 }
