@@ -1,0 +1,47 @@
+{
+  "name": "pkg-name",
+  "version": "0.0.0",
+  "packageManager": "pnpm@9.4.0",
+  "description": "",
+  "author": "Your Name <youremail@mail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/username/pkg-name#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/pkg-name.git"
+  },
+  "bugs": "https://github.com/username/pkg-name/issues",
+  "keywords": [],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build-fast": "tsup src/index.ts --format cjs,esm",
+    "build": "pnpm build-fast --dts-resolve",
+    "lint": "eslint .",
+    "prepublishOnly": "pnpm build",
+    "release": "bumpp && npm publish",
+    "test": "vitest",
+    "update-deps": "pnpm up -Li",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.21.2",
+    "bumpp": "^9.4.1",
+    "eslint": "^9.6.0",
+    "tsup": "8.0.1",
+    "typescript": "^5.5.2",
+    "vitest": "^1.6.0"
+  }
+}
